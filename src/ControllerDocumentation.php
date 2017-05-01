@@ -24,7 +24,7 @@ use AyeAye\Formatter\Serializable;
 class ControllerDocumentation implements Serializable
 {
     /**
-     * @var Controller
+     * @var ControllerInterface
      */
     protected $controller;
 
@@ -59,7 +59,7 @@ class ControllerDocumentation implements Serializable
      * @param \ReflectionObject $reflectionController
      * @throws \InvalidArgumentException
      */
-    public function __construct(Controller $controller, \ReflectionObject $reflectionController = null)
+    public function __construct(ControllerInterface $controller, \ReflectionObject $reflectionController = null)
     {
         $this->controller = $controller;
         $this->reflectedController = $reflectionController;

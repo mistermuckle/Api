@@ -9,7 +9,7 @@
 
 namespace AyeAye\Api\Tests;
 
-use AyeAye\Api\Controller;
+use AyeAye\Api\ControllerInterface;
 use AyeAye\Api\ControllerDocumentation;
 use AyeAye\Api\ControllerReflector;
 use AyeAye\Api\Documentation;
@@ -101,11 +101,14 @@ abstract class TestCase extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * @return Controller|\PHPUnit_Framework_MockObject_MockObject
+     * @return ControllerInterface|\PHPUnit_Framework_MockObject_MockObject
      */
     protected function getMockController()
     {
-        return $this->getMock(Controller::class);
+        return $this->getMock(
+            ControllerInterface::class,
+            ['isMethodHidden', 'setStatus', 'getStatus']
+        );
     }
 
     protected function getMockControllerDocumentation()

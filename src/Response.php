@@ -180,11 +180,15 @@ class Response
         if (is_null($this->preparedResponse)) {
             $this->prepareResponse();
         }
-
-        if ($this->status instanceof Status) {
-            header($this->status->getHttpHeader());
-        }
-
+        
+        $status = $this->getStatus();
+        header(
+            sprintf(
+                'HTTP/1.1 %d %s',
+                $status->getCode(),
+                $status->getMessage()
+            )
+        );
         header("Content-Type: {$this->writer->getContentType()}");
         echo $this->preparedResponse;
 

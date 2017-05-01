@@ -32,12 +32,12 @@ class Router
      * request data.
      *
      * @param Request $request
-     * @param Controller $controller
+     * @param ControllerInterface $controller
      * @param array $requestChain
      * @return mixed
      * @throws Exception
      */
-    public function processRequest(Request $request, Controller $controller, array $requestChain = null)
+    public function processRequest(Request $request, ControllerInterface $controller, array $requestChain = null)
     {
 
         $reflectionController = $this->getControllerReflector()->reflectController($controller);

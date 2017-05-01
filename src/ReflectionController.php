@@ -23,7 +23,7 @@ use AyeAye\Formatter\Deserializable;
 class ReflectionController
 {
     /**
-     * @var Controller
+     * @var ControllerInterface
      */
     protected $controller;
 
@@ -39,9 +39,9 @@ class ReflectionController
      * reflected into a reflection object that will allow us to analyse its
      * features.
      *
-     * @param Controller $controller
+     * @param ControllerInterface $controller
      */
-    public function __construct(Controller $controller)
+    public function __construct(ControllerInterface $controller)
     {
         $this->controller = $controller;
         $this->reflection = new \ReflectionObject($controller);
@@ -53,8 +53,8 @@ class ReflectionController
      * Takes the request method (http verb) and endpoint name and checks for a
      * matching class method.
      *
-     * @param $method
-     * @param $endpointName
+     * @param string $method
+     * @param string $endpointName
      * @return bool
      */
     public function hasEndpoint($method, $endpointName)
@@ -70,7 +70,7 @@ class ReflectionController
      * so the writer of an endpoint need only describe the information they
      * need in the method declaration.
      *
-     * @param $method
+     * @param string $method
      * @param $endpointName
      * @param Request $request
      * @return mixed
@@ -152,7 +152,7 @@ class ReflectionController
      * class method name. (Note: The class method will end with the word
      * Controller)
      *
-     * @param $controllerName
+     * @param string $controllerName
      * @return bool
      */
     public function hasChildController($controllerName)
@@ -169,7 +169,7 @@ class ReflectionController
      * controller object, a \RuntimeException is thrown.
      *
      * @throws \RuntimeException
-     * @param $controllerName
+     * @param string $controllerName
      * @return Controller
      */
     public function getChildController($controllerName)

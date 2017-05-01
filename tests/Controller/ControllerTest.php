@@ -9,7 +9,7 @@
 
 namespace AyeAye\Api\Tests;
 
-use AyeAye\Api\Controller;
+use AyeAye\Api\Controller\Controller;
 use AyeAye\Api\Tests\Injector\StatusInjectorTest;
 
 

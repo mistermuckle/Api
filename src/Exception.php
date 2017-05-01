@@ -20,8 +20,8 @@ namespace AyeAye\Api;
  */
 class Exception extends \Exception implements \JsonSerializable
 {
-    const DEFAULT_ERROR_CODE = 500;
-    const DEFAULT_MESSAGE = 'Internal Server Error';
+    const DEFAULT_ERROR_CODE = Status\InternalServerError::CODE;
+    const DEFAULT_MESSAGE = Status\InternalServerError::MESSAGE;
 
     /**
      * A message to show the client if available
@@ -40,7 +40,7 @@ class Exception extends \Exception implements \JsonSerializable
      * @param \Exception $previous Any previous Exception
      * @SuppressWarnings(PHPMD.StaticAccess)
      */
-    public function __construct($publicMessage = '', $code = 500, $systemMessage = '', \Exception $previous = null)
+    public function __construct($publicMessage = '', $code = static::DEFAULT_ERROR_CODE, $systemMessage = '', \Exception $previous = null)
     {
         // Shift all parameters along if the first parameter is a string
         if (is_int($publicMessage)) {

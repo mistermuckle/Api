@@ -1,7 +1,7 @@
 <?php
 // HelloWorldController.php
 
-use AyeAye\Api\Controller;
+use AyeAye\Api\Controller\Controller;
 
 class HelloWorldController extends Controller
 {

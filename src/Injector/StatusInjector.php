@@ -9,7 +9,8 @@
 
 namespace AyeAye\Api\Injector;
 
-use AyeAye\Api\Status;
+use AyeAye\Api\Status\Ok as DefaultStatus;
+use AyeAye\Api\StatusInterface;
 
 /**
  * Trait StatusInjector
@@ -35,8 +36,9 @@ trait StatusInjector
     public function getStatus()
     {
         if (!$this->status) {
-            $this->status = new Status();
+            $this->status = new DefaultStatus();
         }
+        
         return $this->status;
     }
 
@@ -50,7 +52,7 @@ trait StatusInjector
      * @param Status $status
      * @return $this
      */
-    public function setStatus(Status $status)
+    public function setStatus(StatusInterface $status)
     {
         $this->status = $status;
         return $this;

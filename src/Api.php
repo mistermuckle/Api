@@ -35,7 +35,7 @@ class Api implements LoggerAwareInterface
 
     /**
      * The starting controller for the Api
-     * @var Controller
+     * @var ControllerInterface
      */
     protected $controller;
 
@@ -45,9 +45,9 @@ class Api implements LoggerAwareInterface
      * Initialise the API with a controller that forms the starting point of
      * routing information.
      *
-     * @param Controller      $initialController The starting point for the Api
+     * @param ControllerInterface      $initialController The starting point for the Api
      */
-    public function __construct(Controller $initialController)
+    public function __construct(ControllerInterface $initialController)
     {
         $this->controller = $initialController;
     }
@@ -136,7 +136,7 @@ class Api implements LoggerAwareInterface
      */
     protected function createFailSafeResponse()
     {
-        $status = new Status(500);
+        $status = new Status\InternalServerError();
         $response = new Response();
         $response->setRequest(new Request());
         $response->setWriter(new Json());

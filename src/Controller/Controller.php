@@ -7,17 +7,17 @@
  * @see       https://github.com/AyeAyeApi/Api
  */
 
-namespace AyeAye\Api;
+namespace AyeAye\Api\Controller;
 
+use AyeAye\Api\ControllerInterface;
 use AyeAye\Api\Injector\StatusInjector;
 
 /**
  * Class Controller
- * Describes endpoints and child controllers
  * @package AyeAye/Api
  * @see     https://github.com/AyeAyeApi/Api
  */
-class Controller
+class Controller implements ControllerInterface
 {
     use StatusInjector;
 

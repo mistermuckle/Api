@@ -27,10 +27,10 @@ class ControllerReflector
      *
      * Exists purely for Dependency Injection.
      *
-     * @param Controller $controller
+     * @param ControllerInterface $controller
      * @return ReflectionController
      */
-    public function reflectController(Controller $controller)
+    public function reflectController(ControllerInterface $controller)
     {
         return new ReflectionController($controller);
     }
