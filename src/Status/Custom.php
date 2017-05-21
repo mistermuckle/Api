@@ -4,21 +4,28 @@ namespace AyeAye\Api\Status;
 
 use AyeAye\Api\StatusInterface;
 
-abstract class AbstractStatus implements StatusInterface
+class CustomStatus implements
+    StatusInterface,
+    \JsonSerializable
 {
+    const DEFAULT_MESSAGE = 'Custom Status';
+    
+    private $code;
     private $message;
     
     /**
+     * @param int $code
      * @param string|null $message
      */
-    public function __construct($message = null)
+    public function __construct($code, $message)
     {
-        $this->message = is_null($message) ? static::MESSAGE : $message;
+        $this->code = $code;
+        $this->message = is_null($message) ? self::DEFAULT_MESSAGE : $message;
     }
     
     public function getCode()
     {
-        return static::CODE;
+        return $this->code;
     }
     
     public function getMessage()
@@ -29,7 +36,7 @@ abstract class AbstractStatus implements StatusInterface
     public function jsonSerialize()
     {
         return [
-            'code' => static::CODE,
+            'code' => $this->code,
             'message' => $this->message
         ];
     }

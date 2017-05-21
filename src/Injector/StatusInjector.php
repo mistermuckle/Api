@@ -22,7 +22,7 @@ use AyeAye\Api\StatusInterface;
 trait StatusInjector
 {
     /**
-     * @var Status
+     * @var StatusInterface
      */
     private $status;
 
@@ -31,7 +31,7 @@ trait StatusInjector
      *
      * If a status has not been set, a default "200 OK" status is returned.
      *
-     * @return Status
+     * @return StatusInterface
      */
     public function getStatus()
     {
@@ -49,7 +49,7 @@ trait StatusInjector
      * this will be the default and it would be undesirable to change a bad
      * status to OK.
      *
-     * @param Status $status
+     * @param StatusInterface $status
      * @return $this
      */
     public function setStatus(StatusInterface $status)

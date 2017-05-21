@@ -208,7 +208,7 @@ class ReflectionController
      *
      * This is a simple wrapper function.
      *
-     * @return Status
+     * @return StatusInterface
      */
     public function getStatus()
     {

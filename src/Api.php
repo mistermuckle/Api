@@ -38,6 +38,7 @@ class Api implements LoggerAwareInterface
      * @var ControllerInterface
      */
     protected $controller;
+    private $statusFactory;
 
     /**
      * Set up the API
@@ -47,9 +48,12 @@ class Api implements LoggerAwareInterface
      *
      * @param ControllerInterface      $initialController The starting point for the Api
      */
-    public function __construct(ControllerInterface $initialController)
-    {
+    public function __construct(
+        ControllerInterface $initialController,
+        StatusFactory $statusFactory
+    ) {
         $this->controller = $initialController;
+        $this->statusFactory = $statusFactory;
     }
 
     /**
@@ -102,9 +106,11 @@ class Api implements LoggerAwareInterface
             $this->log(LogLevel::INFO, $e->getPublicMessage());
             $this->log(LogLevel::ERROR, $e->getMessage(), ['exception' => $e]);
             $response->setBodyData($e->getPublicMessage());
-            $response->setStatus(new Status($e->getCode()));
+            $response->setStatus(
+                $this>statusFactory->createStatus($e->getCode())
+            );
         } catch (\Exception $e) {
-            $status = new Status(500);
+            $status = new Status\InternalServerError();
             $this->log(LogLevel::CRITICAL, $e->getMessage(), ['exception' => $e]);
             $response->setBodyData($status->getMessage());
             $response->setStatus($status);

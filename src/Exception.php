@@ -20,9 +20,6 @@ namespace AyeAye\Api;
  */
 class Exception extends \Exception implements \JsonSerializable
 {
-    const DEFAULT_ERROR_CODE = Status\InternalServerError::CODE;
-    const DEFAULT_MESSAGE = Status\InternalServerError::MESSAGE;
-
     /**
      * A message to show the client if available
      * @var string
@@ -56,10 +53,15 @@ class Exception extends \Exception implements \JsonSerializable
 
         // If a public message wasn't specified, get it from the code
         if (!$publicMessage) {
-            $publicMessage = Status::getMessageForCode($code);
-            if (!$publicMessage) {
-                $publicMessage = static::DEFAULT_MESSAGE;
+            $statusFactory = new StatusFactory();
+
+            try {
+                $status = $statusFactory->create($code);
+            } catch (\Exception) {
+                $status = new Status\InternalServiceError();
             }
+
+            $publicMessage = $status->getMessage();
         }
 
         // If the system message wasn't specified, use the public message
