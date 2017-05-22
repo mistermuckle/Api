@@ -2,7 +2,7 @@
 
 namespace AyeAye\Api\Status;
 
-class SuccessStatusWrapperTest extends \PHPUnit\Framework\TestCase
+class SuccessStatusWrapperTest extends \PHPUnit_Framework_TestCase
 {   
     /**
      * @dataProvider get2XXStatusCodes
@@ -21,7 +21,7 @@ class SuccessStatusWrapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testConstructorThrowsAnExceptionIfWrappedStatusDoesNotReturn2XXCode($code)
     {
-        new SuccessStatusWrapper($this->getMockStatus($wrapped));
+        new SuccessStatusWrapper($this->getMockStatus($code));
     }
     
     public function get2XXStatusCodes()
@@ -40,7 +40,7 @@ class SuccessStatusWrapperTest extends \PHPUnit\Framework\TestCase
             [300],
             [399],
             [400],
-            [499]
+            [499],
             [500],
             [599]
         ];

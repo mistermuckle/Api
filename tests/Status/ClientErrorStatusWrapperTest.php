@@ -2,11 +2,8 @@
 
 namespace AyeAye\Api\Status;
 
-class ClientErrorStatusWrapperTest extends \PHPUnit\Framework\TestCase
+class ClientErrorStatusWrapperTest extends \PHPUnit_Framework_TestCase
 {
-    private $wrapped;
-
-    
     /**
      * @dataProvider get4XXStatusCodes
      */
@@ -24,7 +21,7 @@ class ClientErrorStatusWrapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testConstructorThrowsAnExceptionIfWrappedStatusDoesNotReturn4XXCode($code)
     {
-        new ClientErrorStatusWrapper($this->getMockStatus($wrapped));
+        new ClientErrorStatusWrapper($this->getMockStatus($code));
     }
     
     public function get4XXStatusCodes()
@@ -43,7 +40,7 @@ class ClientErrorStatusWrapperTest extends \PHPUnit\Framework\TestCase
             [200],
             [299],
             [300],
-            [399]
+            [399],
             [500],
             [599]
         ];

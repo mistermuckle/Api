@@ -2,7 +2,7 @@
 
 namespace AyeAye\Api\Status;
 
-class ServerErrorStatusWrapperTest extends \PHPUnit\Framework\TestCase
+class ServerErrorStatusWrapperTest extends \PHPUnit_Framework_TestCase
 {   
     /**
      * @dataProvider get5XXStatusCodes
@@ -21,7 +21,7 @@ class ServerErrorStatusWrapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testConstructorThrowsAnExceptionIfWrappedStatusDoesNotReturn5XXCode($code)
     {
-        new ServerErrorStatusWrapper($this->getMockStatus($wrapped));
+        new ServerErrorStatusWrapper($this->getMockStatus($code));
     }
     
     public function get5XXStatusCodes()
@@ -40,7 +40,7 @@ class ServerErrorStatusWrapperTest extends \PHPUnit\Framework\TestCase
             [200],
             [299],
             [300],
-            [399]
+            [399],
             [400],
             [499]
         ];

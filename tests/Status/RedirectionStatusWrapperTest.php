@@ -2,7 +2,7 @@
 
 namespace AyeAye\Api\Status;
 
-class RedirectionStatusWrapperTest extends \PHPUnit\Framework\TestCase
+class RedirectionStatusWrapperTest extends \PHPUnit_Framework_TestCase
 {   
     /**
      * @dataProvider get3XXStatusCodes
@@ -21,7 +21,7 @@ class RedirectionStatusWrapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testConstructorThrowsAnExceptionIfWrappedStatusDoesNotReturn1XXCode($code)
     {
-        new RedirectionStatusWrapper($this->getMockStatus($wrapped));
+        new RedirectionStatusWrapper($this->getMockStatus($code));
     }
     
     public function get3XXStatusCodes()
@@ -40,7 +40,7 @@ class RedirectionStatusWrapperTest extends \PHPUnit\Framework\TestCase
             [200],
             [299],
             [400],
-            [499]
+            [499],
             [500],
             [599]
         ];

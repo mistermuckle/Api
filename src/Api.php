@@ -107,7 +107,7 @@ class Api implements LoggerAwareInterface
             $this->log(LogLevel::ERROR, $e->getMessage(), ['exception' => $e]);
             $response->setBodyData($e->getPublicMessage());
             $response->setStatus(
-                $this>statusFactory->createStatus($e->getCode())
+                $this->statusFactory->createStatus($e->getCode())
             );
         } catch (\Exception $e) {
             $status = new Status\InternalServerError();

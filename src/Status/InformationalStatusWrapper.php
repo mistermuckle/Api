@@ -17,7 +17,7 @@ class InformationalStatusWrapper extends AbstractStatusWrapper implements Inform
             throw new \Exception('Status code must be between 100 and 199, inclusive.');
         }
         
-        self::__construct($wrapped);
+        parent::__construct($wrapped);
     }
     
     

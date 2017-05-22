@@ -17,7 +17,7 @@ class RedirectionStatusWrapper extends AbstractStatusWrapper implements Redirect
             throw new \Exception('Status code must be between 300 and 399, inclusive.');
         }
         
-        self::__construct($wrapped);
+        parent::__construct($wrapped);
     }
     
     

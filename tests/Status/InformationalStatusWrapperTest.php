@@ -2,7 +2,7 @@
 
 namespace AyeAye\Api\Status;
 
-class InformationalStatusWrapperTest extends \PHPUnit\Framework\TestCase
+class InformationalStatusWrapperTest extends \PHPUnit_Framework_TestCase
 {
     /**
      * @dataProvider get1XXStatusCodes
@@ -21,7 +21,7 @@ class InformationalStatusWrapperTest extends \PHPUnit\Framework\TestCase
      */
     public function testConstructorThrowsAnExceptionIfWrappedStatusDoesNotReturn1XXCode($code)
     {
-        new InformationalStatusWrapper($this->getMockStatus($wrapped));
+        new InformationalStatusWrapper($this->getMockStatus($code));
     }
     
     public function get1XXStatusCodes()
@@ -40,7 +40,7 @@ class InformationalStatusWrapperTest extends \PHPUnit\Framework\TestCase
             [300],
             [399],
             [400],
-            [499]
+            [499],
             [500],
             [599]
         ];
