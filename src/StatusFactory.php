@@ -63,11 +63,24 @@ class StatusFactory
             case 500:
                 return new Status\InternalServerError($message);
             default:
-                if (100 > $code || 599 < $code) {
-                    return new Status\Custom($code, $message);
+                if ($code  < 100 || $code > 599) {
+                    throw new \Exception('Invalid status');
                 }
             
-                throw new \Exception('Invalid status');
+                $status = new Status\Custom($code, $message);
+                
+                if ($status < 200) {
+                    return new Status\InformationalStatusWrapper($status);
+                } elseif ($status < 300) {
+                    return new Status\SuccessStatusWrapper($status);
+                } elseif ($status < 400) {
+                    return new Status\RedirectionStatusWrapper($status);
+                } elseif ($status < 500) {
+                    return new Status\ClientErrorStatusWrapper($status);
+                } else {
+                    return newStatus\ServerErrorStatusWrapper($status);
+                }
+            }
         }
     }
 }
