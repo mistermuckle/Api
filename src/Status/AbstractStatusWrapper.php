@@ -4,7 +4,7 @@ namespace AyeAye\Api\Status;
 
 use AyeAye\Api\StatusInterface;
 
-abstract class ClientErrorStatusWrapper implements StatusInterface
+abstract class AbstractStatusWrapper implements StatusInterface
 {
     private $wrapped;
     

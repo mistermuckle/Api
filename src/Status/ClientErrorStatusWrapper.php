@@ -17,8 +17,6 @@ class ClientErrorStatusWrapper extends AbstractStatusWrapper implements ClientEr
             throw new \Exception('Status code must be between 400 and 499, inclusive.');
         }
         
-        self::__construct($wrapped);
+        parent::__construct($wrapped);
     }
-    
-    
 }

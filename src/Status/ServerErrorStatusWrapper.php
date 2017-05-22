@@ -17,7 +17,7 @@ class ServerErrorStatusWrapper extends AbstractStatusWrapper implements ServerEr
             throw new \Exception('Status code must be between 500 and 599, inclusive.');
         }
         
-        self::__construct($wrapped);
+        parent::__construct($wrapped);
     }
     
     

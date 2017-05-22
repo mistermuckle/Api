@@ -17,7 +17,7 @@ class SuccessStatusWrapper extends AbstractStatusWrapper implements SuccessStatu
             throw new \Exception('Status code must be between 200 and 299, inclusive.');
         }
         
-        self::__construct($wrapped);
+        parent::__construct($wrapped);
     }
     
     
